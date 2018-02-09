@@ -1,4 +1,4 @@
-import State from '../../models/State';
+import State from '../../models/states';
 
 export default {
     getStates: () => State.find({}).sort({ createdAt: -1 }),

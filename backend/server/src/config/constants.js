@@ -1,5 +1,5 @@
 export default {
     PORT: process.env.PORT || 3000,
-    DB_URL: 'mongodb://localhost/utd',
+    DB_URL: 'mongodb://localhost/utyp',
     GRAPHQL_PATH: '/graphql' 
 }
