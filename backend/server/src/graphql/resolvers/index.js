@@ -1,17 +1,59 @@
 import GraphQLDate from 'graphql-date';
-import StateResolvers from './state-resolvers';
+import CampusResolvers from './campus-resolvers';
+import CarrersResolvers from './carrers-resolvers';
+import EmployeesResolvers from './employees-resolvers';
+// import EventsResolvers from './events-resolvers';
+// import ServicesResolvers from './services-resolvers';
+import PostsResolvers from './posts-resolvers';
+import StudentsResolvers from './students-resolvers';
+// import SubjectsResolvers from './subjects-resolvers';
+import TeachersResolvers from './teachers-resolvers';
 
 
 export default {
     Date: GraphQLDate, 
     Query: {
-        getStates: StateResolvers.getStates,
-        getState: StateResolvers.getState,
+        getCampus: CampusResolvers.getCampus,
+        getAllCampus: CampusResolvers.getAllCampus,
 
+        getCarrer: CarrersResolvers.getCarrer,
+        getCarrers: CarrersResolvers.getCarrers,
+
+        getEmployee: EmployeesResolvers.getEmployee,
+        getEmployees: EmployeesResolvers.getEmployees,
+
+        getPost: PostsResolvers.getPost,
+        getPosts: PostsResolvers.getPosts,
+
+        getStudent: StudentsResolvers.getStudent,
+        getStudents: StudentsResolvers.getStudents,
+
+        getTeacher: TeachersResolvers.getTeacher,
+        getTeachers: TeachersResolvers.getTeachers
     },
     Mutation: {
-        createState: StateResolvers.createState,
-        updateState: StateResolvers.updateState,
-        deleteState: StateResolvers.deleteState
+        createCampus: CampusResolvers.createCampus,
+        updateCampus: CampusResolvers.updateCampus,
+        deleteCampus: CampusResolvers.deleteCampus,
+
+        createCarrer: CarrersResolvers.createCarrer,
+        updateCarrer: CarrersResolvers.updateCarrer,
+        deleteCarrer: CarrersResolvers.deleteCarrer,
+
+        createEmployee: EmployeesResolvers.createEmployee,
+        updateEmployee: EmployeesResolvers.updateEmployee,
+        deleteEmployee: EmployeesResolvers.deleteEmployee,
+
+        createPost: PostsResolvers.createPost,
+        updatePost: PostsResolvers.updatePost,
+        deletePost: PostsResolvers.deletePost,
+
+        createStudent: StudentsResolvers.createStudent,
+        updateStudent: StudentsResolvers.updateStudent,
+        deleteStudent: StudentsResolvers.deleteStudent,
+        
+        createTeacher: TeachersResolvers.createTeacher,
+        updateTeacher: TeachersResolvers.updateTeacher,
+        deleteTeacher: TeachersResolvers.deleteTeacher,
     }
 }

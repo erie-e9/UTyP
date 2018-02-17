@@ -1,0 +1,244 @@
+pendientes en schema
+
+
+        createEvent(): Event
+        updateEvent(_id: ID!,): Event
+        deleteEvent(_id: ID!): Status
+
+        createService(): Service
+        updateService(_id: ID!,): Service
+        deleteService(_id: ID!): Status
+        
+        createSubject(): Subject
+        updateSubject(_id: ID!,): Subject
+        deleteSubject(_id: ID!): Status
+
+
+// * Campus
+        {
+                getCampus(_id:"5a7fa28e01c9753530aa35fc"){
+                        _id
+                        camname
+                        camlogo
+                        camphone
+                        camcellphone
+                        camemail
+                        camcode
+                        camstate
+                        camcity
+                        camstreet
+                        camzip
+                        camgeolocation
+                }
+        }
+
+        mutation {
+                updateCampus(_id: "5a7fa6a661c50e7e6032c699", camname: "viejo campus", camlogo: "logo.jpg", camphone: "1234567890", camcellphone: "1234567890", camemail: "campus@gmail.com", camcode: "campus123", camstate: "Utah", camcity: "Albertoshire", camstreet: "Dimitri Plaza", camzip: 34222, camgeolocation: "24.214214,-107.321321") {
+                        _id
+                        camname
+                        camlogo
+                        camphone
+                        camcellphone
+                        camemail
+                        camcode
+                        camstate
+                        camcity
+                        camstreet
+                        camzip
+                        camgeolocation
+                }
+        }
+
+
+//* Carrer
+        {
+                getCarrer(_id: "5a7fa8da37a72781402b5742") {
+                        _id
+                        caname
+                        calogo
+                        casubjets
+                        cacode
+                }
+        }
+
+        mutation {
+                updateCarrer(_id: "5a7fa87838b1aa80805eb2ea", caname: "Tics", calogo: "https://s3.amazonaws.com/uifaces/faces/twitter/benjamin_knight/128.jpg", casubjets: "CARRERSUBJETS", cacode: "CARRERCODE Tics 2018") {
+                        _id
+                        caname
+                        calogo
+                        casubjets
+                        cacode
+                }
+        }
+
+//* Employees
+        {
+                getEmployee(_id: "5a7fc2c7cec2874534f309bf") {
+                        _id
+                        efirstname
+                        elastname
+                        eavatar
+                        egender
+                        ephone
+                        ecellphone
+                        eemail
+                        ecountrybirth
+                        estate
+                        ecity
+                        estreet
+                        ezip
+                        egeolocation
+                        ecurp
+                        erfc
+                        eimss
+                        eemailverified
+                        eactiveaccount
+                }
+        }
+
+        mutation {
+                updateEmployee(_id: "5a7fc76461d77a2c40864d02", efirstname: "Eric", elastname: "Torres", eavatar: "https://s3.amazonaws.com/uifaces/faces/twitter/gcmorley/128.jpg", egender: "male", ephone: "791-180-244", ecellphone: "791-180-243", eemail: "eric5@gmail.com", ecountrybirth: "México", estate: "Durango", ecity: "Durango", estreet: "Bayacora", ezip: 34000, egeolocation: "24.214214,-107.321321", ecurp: "qwertyuiopasdfghj1", erfc: "qwertyuiopas1", eimss: "EMPLOYEEIMSS1", eemailverified: "verified", eactiveaccount: "active") {
+                        _id
+                        efirstname
+                        elastname
+                        eavatar
+                        egender
+                        ephone
+                        ecellphone
+                        eemail
+                        ecountrybirth
+                        estate
+                        ecity
+                        estreet
+                        ezip
+                        egeolocation
+                        ecurp
+                        erfc
+                        eimss
+                        eemailverified
+                        eactiveaccount
+                }
+        }
+
+
+//* States
+        {
+                getState(_id: "5a7fc8112ca93a25a013f671"){
+                        _id
+                        sttext
+                        stimage
+                }
+        }
+
+        mutation {
+                updateState(_id: "5a7fc8112ca93a25a013f671", sttext: "My new state", stimage: "Image of my state") {
+                        _id
+                        sttext
+                        stimage
+                }
+        }
+
+//* Students
+        {
+                getStudent(_id: "5a7fce53463de93f90f06143") {
+                        _id
+                        sfirstname
+                        slastname
+                        savatar
+                        sgender
+                        sphone
+                        scellphone
+                        semail
+                        scountrybirth
+                        sstate
+                        scity
+                        sstreet
+                        szip
+                        sgeolocation
+                        slasthighschool
+                        scurp
+                        srfc
+                        simss
+                        semailverified
+                        sactiveaccount
+                }
+        }
+
+        mutation {
+                updateStudent(_id: "5a7fce53463de93f90f06143", sfirstname: "Eric", slastname: "Torres", savatar: "", sgender: "male", sphone: "1234567890", scellphone: "1234567890", semail: "eris@hotmail.com", scountrybirth: "México", sstate: "Durango", scity: "Durango", sstreet: "Calle", szip: 35111, sgeolocation: "24.214214,-107.321321", slasthighschool: "COBAED", scurp: "qwertyuiopasdfghjk", srfc: "qwertyuiopasd", simss: "STUDENTIMSS", semailverified: "verified", sactiveaccount: "active") {
+                        _id
+                        sfirstname
+                        slastname
+                        savatar
+                        sgender
+                        sphone
+                        scellphone
+                        semail
+                        scountrybirth
+                        sstate
+                        scity
+                        sstreet
+                        szip
+                        sgeolocation
+                        slasthighschool
+                        scurp
+                        srfc
+                        simss
+                        semailverified
+                        sactiveaccount
+                }
+        }
+
+
+//* Teachers 
+        {
+                getTeacher(_id: "5a7fd17d4d3bb01034c0f77b") {
+                        _id
+                        tfirstname
+                        tlastname
+                        tavatar
+                        tgender
+                        tphone
+                        tcellphone
+                        temail
+                        tsubjets
+                        tcountrybirth
+                        tstate
+                        tcity
+                        tstreet
+                        tzip
+                        tgeolocation
+                        teducation
+                        tcurp
+                        trfc
+                        timss
+                        temailverified
+                        tactiveaccount
+                }
+        }
+
+        mutation{
+                updateTeacher(_id: "5a7fd17d4d3bb01034c0f77b", tfirstname: "Eric", tlastname: "Torres", tavatar: "https://s3.amazonaws.com/uifaces/faces/twitter/myastro/128.jpg", tgender: "fmale", tphone: "720-167-0793", tcellphone: "720-167-0793", temail: "er@gmail.com", tsubjets: "TI", tcountrybirth: "México", tstate: "Durango", tcity: "Durango", tstreet: "Bayacora", tzip: 12345, tgeolocation: "24.214214,-107.321321", teducation: "Ingeniero", tcurp: "qwertyuiopasdfghjk", trfc: "qwertyuiopasd", timss: "TEACHERIMSS", temailverified: "verified", tactiveaccount: "active") {
+                        _id
+                        tfirstname
+                        tlastname
+                        tavatar
+                        tgender
+                        tphone
+                        tcellphone
+                        temail
+                        tsubjets
+                        tcountrybirth
+                        tstate
+                        tcity
+                        tstreet
+                        tzip
+                        tgeolocation
+                        teducation
+                        tcurp
+                        trfc
+                        timss
+                        temailverified
+                        tactiveaccount
+                }
+        }

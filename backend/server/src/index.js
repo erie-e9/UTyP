@@ -7,7 +7,7 @@ import { createServer } from 'http';
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
 import constants from './config/constants';
-import mocks from './mocks';
+import mocks from './mocks/posts';
 import './config/db';
 
 const app = express();
