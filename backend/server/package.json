@@ -1,7 +1,7 @@
 {
   "name": "utyp",
   "version": "1.0.0",
-  "description": "RN App to UT & Polytechnics universities",
+  "description": "Complete system to Technological and Polytechnic Universities",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=dev nodemon --exec babel-node src/index.js",

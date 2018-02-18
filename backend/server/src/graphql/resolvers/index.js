@@ -43,6 +43,7 @@ export default {
         createEmployee: EmployeesResolvers.createEmployee,
         updateEmployee: EmployeesResolvers.updateEmployee,
         deleteEmployee: EmployeesResolvers.deleteEmployee,
+        loginEmployee: EmployeesResolvers.loginEmployee,
 
         createPost: PostsResolvers.createPost,
         updatePost: PostsResolvers.updatePost,
@@ -51,9 +52,11 @@ export default {
         createStudent: StudentsResolvers.createStudent,
         updateStudent: StudentsResolvers.updateStudent,
         deleteStudent: StudentsResolvers.deleteStudent,
+        loginStudent: StudentsResolvers.loginStudent,
         
         createTeacher: TeachersResolvers.createTeacher,
         updateTeacher: TeachersResolvers.updateTeacher,
         deleteTeacher: TeachersResolvers.deleteTeacher,
+        loginTeacher: TeachersResolvers.loginTeacher,
     }
 }

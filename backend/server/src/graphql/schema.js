@@ -49,14 +49,16 @@ export default `
         egender: String!
         ephone: String!
         ecellphone: String
+        ejobtitle: String!
         eemail: String!
+        epassword: String!
         ecountrybirth: String!
         estate: String!
         ecity: String!
         estreet: String!
         ezip: Int!
         egeolocation: String!
-        ebirthdate: Date
+        ebirthdate: String!
         ecurp: String!
         erfc: String!
         eimss: String!
@@ -95,20 +97,21 @@ export default `
         sphone: String!
         scellphone: String
         semail: String!
+        spassword: String!
         scountrybirth: String!
         sstate: String!
         scity: String!
         sstreet: String!
         szip: Int!
         sgeolocation: String!
-        sbirthdate: Date
+        sbirthdate: String!
         slasthighschool: String!
         senrollment: String!
         scurrentoccupation: String!
         sranking: Int!
         sresume: String
         sdateadmission: String!
-        sdateegress: String!
+        sdateegress: String
         scurp: String!
         srfc: String!
         simss: String!
@@ -133,6 +136,7 @@ export default `
         tphone: String!
         tcellphone: String
         temail: String!
+        tpassword: String
         tsubjets: String!
         tcountrybirth: String!
         tstate: String!
@@ -145,7 +149,7 @@ export default `
         toriginuniversity: String!
         tdegreestudy: String!
         tresume: String!
-        tranking: String!
+        tranking: Int!
         tsalary: Int!
         tdateadmission: String!
         tdateegress: String
@@ -244,14 +248,16 @@ export default `
                         egender: String!,
                         ephone: String!,
                         ecellphone: String,
+                        ejobtitle: String!,
                         eemail: String!,
+                        epassword: String!,
                         ecountrybirth: String!,
                         estate: String!,
                         ecity: String!,
                         estreet: String!,
                         ezip: Int!,
                         egeolocation: String!,
-                        ebirthdate: Date,
+                        ebirthdate: String!,
                         ecurp: String!,
                         erfc: String!,
                         eimss: String!,
@@ -264,20 +270,23 @@ export default `
                         egender: String!,
                         ephone: String!,
                         ecellphone: String,
+                        ejobtitle: String!,
                         eemail: String!,
+                        epassword: String!,
                         ecountrybirth: String!,
                         estate: String!,
                         ecity: String!,
                         estreet: String!,
                         ezip: Int!,
                         egeolocation: String!,
-                        ebirthdate: Date,
+                        ebirthdate: String!,
                         ecurp: String!,
                         erfc: String!,
                         eimss: String!,
                         eemailverified: String!,
                         eactiveaccount: String!): Employee
         deleteEmployee(_id: ID!): Status
+        loginEmployee(eemail: String!, epassword: String!): Employee
 
         createPost(pttext: String, 
                     ptimage: String): Post
@@ -286,27 +295,28 @@ export default `
                     ptimage: String): Post
         deletePost(_id: ID!): Status
 
-        createStudent(sfirstname: String!
+        createStudent(sfirstname: String!,
                         slastname: String,
                         savatar: String!,
                         sgender: String!,
                         sphone: String!,
                         scellphone: String,
                         semail: String!,
+                        spassword: String!,
                         scountrybirth: String!,
                         sstate: String!,
                         scity: String!,
                         sstreet: String!,
                         szip: Int!,
                         sgeolocation: String!,
-                        sbirthdate: Date,
+                        sbirthdate: String!
                         slasthighschool: String!,
                         senrollment: String!,
                         scurrentoccupation: String!,
                         sranking: Int!,
                         sresume: String,
                         sdateadmission: String!,
-                        sdateegress: String!,
+                        sdateegress: String,
                         scurp: String!,
                         srfc: String!,
                         simss: String!,
@@ -320,26 +330,28 @@ export default `
                         sphone: String!,
                         scellphone: String,
                         semail: String!,
+                        spassword: String!,
                         scountrybirth: String!,
                         sstate: String!,
                         scity: String!,
                         sstreet: String!,
                         szip: Int!,
                         sgeolocation: String!,
-                        sbirthdate: Date,
+                        sbirthdate: String!
                         slasthighschool: String!,
                         senrollment: String!,
                         scurrentoccupation: String!,
                         sranking: Int!,
                         sresume: String,
                         sdateadmission: String!,
-                        sdateegress: String!,
+                        sdateegress: String,
                         scurp: String!,
                         srfc: String!,
                         simss: String!,
                         semailverified: String!,
                         sactiveaccount: String!): Student
         deleteStudent(_id: ID!): Status
+        loginStudent( semail: String!, spassword: String!): Student
         
         createTeacher(tfirstname: String!,
                         tlastname: String,
@@ -348,6 +360,7 @@ export default `
                         tphone: String!,
                         tcellphone: String,
                         temail: String!,
+                        tpassword: String,
                         tsubjets: String!,
                         tcountrybirth: String!,
                         tstate: String!,
@@ -361,10 +374,10 @@ export default `
                         toriginuniversity: String!,
                         tdegreestudy: String!,
                         tresume: String!,
-                        tranking: String!,
+                        tranking: Int!,
                         tsalary: Int!,
                         tdateadmission: String!,
-                        tdateegress: String!,
+                        tdateegress: String,
                         tcurp: String!,
                         trfc: String!,
                         timss: String!,
@@ -378,6 +391,7 @@ export default `
                         tphone: String!,
                         tcellphone: String,
                         temail: String!,
+                        tpassword: String,
                         tsubjets: String!,
                         tcountrybirth: String!,
                         tstate: String!,
@@ -391,16 +405,17 @@ export default `
                         toriginuniversity: String!,
                         tdegreestudy: String!,
                         tresume: String!,
-                        tranking: String!,
+                        tranking: Int!,
                         tsalary: Int!,
                         tdateadmission: String!,
-                        tdateegress: String!,
+                        tdateegress: String,
                         tcurp: String!,
                         trfc: String!,
                         timss: String!,
                         temailverified: String!,
                         tactiveaccount: String!): Teacher
         deleteTeacher(_id: ID!): Status
+        loginTeacher(temail: String!, tpassword: String!): Teacher
     }
 
     schema {

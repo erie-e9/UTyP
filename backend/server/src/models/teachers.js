@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { hashSync, compareSync } from 'bcrypt-nodejs';
 
 const TeacherSchema = new Schema({
     tfirstname: {
@@ -23,7 +24,6 @@ const TeacherSchema = new Schema({
     },
     tphone: {
         type: String,
-        // unique: true, //! pendiente descomentar
         required: 'Teacher phone is required',
         minlength: [9, 'Teacher phone must to be longer that 9 characters'],
         maxlength: [13, 'Teacher phone is very longer'],
@@ -41,40 +41,40 @@ const TeacherSchema = new Schema({
         // unique: true, //! pendiente descomentar
         maxlength: [100, 'Teacher email is very longer'],
         match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Teacher email is incorrect type of email']
-    },    
+    },
+    tpassword: {
+        type:String,
+        required:'Teacher password is required',
+        minlength:[3, 'Teacher password must be longer that 3 characters'],
+    },
     tsubjets: {
         type: String,
         required: 'Teacher subjets is required',
         maxlength: [45, 'Teacher subjets is very longer']
-    },  
-    // taddress: {
-    //     type: String,
-    //     required: 'Teacher address is required',
-    //     minlength: [20, 'Teacher address must to be longer that 20 characters'],
-    //     maxlength: [250, 'Teacher address is very longer']
-    // },
+    },
     tcountrybirth: {
         type: String,
         required: 'Teacher countrybirth is required',
-        maxlength: [45, 'Teacher countrybirth is very longer']
+        minlength: [3, 'Teacher countrybirth must to be longer that 3 characters'],
+        maxlength: [50, 'Teacher countrybirth is very longer']
     },
     tstate: {
         type: String,
         required: 'Teacher state is required',
         minlength: [3, 'Teacher state must to be longer that 3 characters'],
-        maxlength: [25, 'Teacher state too long']
+        maxlength: [50, 'Teacher state too long']
     },
     tcity: {
         type: String,
         required: 'Teacher city is required',
         minlength: [3, 'Teacher city must to be longer that 3 characters'],
-        maxlength: [25, 'Teacher city too long']
+        maxlength: [50, 'Teacher city too long']
     },
     tstreet: {
         type: String,
         required: 'Teacher street is required',
         minlength: [3, 'Teacher street must to be longer that 3 characters'],
-        maxlength: [25, 'Teacher street too long']
+        maxlength: [50, 'Teacher street too long']
     },
     tzip: {
         type: Number,
@@ -87,7 +87,7 @@ const TeacherSchema = new Schema({
     },
     tbirthdate: {
         type: String,
-        required: 'Teacher birthdate is required',
+        // required: 'Teacher birthdate is required',
     },
     teducation: {
         type: String,
@@ -97,7 +97,6 @@ const TeacherSchema = new Schema({
     tprofessionallicense: {
         type: Number,
         required: 'Teacher professional license is required',
-        // // unique: true, //! pendiente descomentar //! pendiente descomentar
         min: [8, 'Teacher professional license must to be 8 characters'],
         // max: [9, 'Teacher professional license is very longer']
     },
@@ -114,7 +113,6 @@ const TeacherSchema = new Schema({
     },
     tresume: { //! pendiente si va a ser archivo o datos
         type: String,
-        // // unique: true, //! pendiente descomentar //! pendiente descomentar
     },
     tranking: {
         type: Number, //! pediente el tipo de estrellitas
@@ -138,21 +136,21 @@ const TeacherSchema = new Schema({
     tcurp: {
         type: String,
         required: 'Teacher curp is required',
-        // // unique: true, //! pendiente descomentar //! pendiente descomentar
+        // unique: true, //! pendiente descomentar
         minlength: [18, 'Teacher curp must to be 18 characters'],
         maxlength: [18, 'Teacher curp is very longer']
     },
     trfc: {
         type: String,
         required: 'Teacher rfc is required',
-        // // unique: true, //! pendiente descomentar //! pendiente descomentar
+        // unique: true, //! pendiente descomentar
         minlength: [13, 'Teacher rfc must to be 13 characters'],
         maxlength: [13, 'Teacher rfc is very longer']
     },
     timss: {//! Pendiente longitud
         type: String,
         required: 'Teacher imss is required',
-        // // unique: true, //! pendiente descomentar //! pendiente descomentar
+        // unique: true, //! pendiente descomentar
         minlength: [5, 'Teacher imss must to be longer that 5 characters'],
         maxlength: [45, 'Teacher imss is very longer']
     },  
@@ -167,5 +165,22 @@ const TeacherSchema = new Schema({
         enum: ['active', 'disabled']
     }
 }, { timestamps: true });
+
+TeacherSchema.pre('save', function(next) {
+    if (this.isModified('tpassword')) {
+        this.tpassword = this._hashPassword(this.tpassword);
+        return next();
+    }
+    return next();
+});
+
+TeacherSchema.methods = {
+    _hashPassword(tpassword) {
+        return hashSync(tpassword);
+    },
+    _authenticate(tpassword) {
+        return compareSync(tpassword, this.tpassword);
+    }
+};
 
 export default mongoose.model('Teacher', TeacherSchema);

@@ -1,7 +1,7 @@
 import faker from 'faker';
 import Teacher from '../models/teachers';
 
- const TEACHER_TOTAL = 1;
+ const TEACHER_TOTAL = 10;
 
  export default async () => {
      try {
@@ -15,6 +15,7 @@ import Teacher from '../models/teachers';
                                     tphone: faker.phone.phoneNumberFormat(),
                                     tcellphone: faker.phone.phoneNumberFormat(),
                                     temail: faker.internet.email(),
+                                    tpassword: 'teacherpassword',
                                     tsubjets: 'TEACHERSUBJETS',
                                     tcountrybirth: faker.address.country(),
                                     tstate: faker.address.state(),

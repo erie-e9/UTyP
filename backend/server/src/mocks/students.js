@@ -15,6 +15,7 @@ export default async () => {
                                 sphone: faker.phone.phoneNumberFormat(),
                                 scellphone: faker.phone.phoneNumberFormat(),
                                 semail: faker.internet.email(),
+                                spassword: 'password123',
                                 scountrybirth: faker.address.country(),
                                 sstate: faker.address.state(),
                                 scity: faker.address.city(),

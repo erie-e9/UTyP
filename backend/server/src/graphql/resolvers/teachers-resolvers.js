@@ -3,7 +3,7 @@ import Teacher from '../../models/teachers';
 export default {
     getTeacher: (_, { _id }) => Teacher.findById(_id),
     getTeachers: () => Teacher.find({}).sort({ createdAt: -1 }),
-    createTeacher: (_, args) => Teacher.create(args),
+    createTeacher: (_, args) => Teacher.create(args), //* sigup teacher
     updateTeacher: (_, { _id, ...rest }) => Teacher.findByIdAndUpdate(_id, rest, {new: true}),
     deleteTeacher: async (_, { _id }) => {
         try {
@@ -14,5 +14,17 @@ export default {
         } catch (error) {
             throw error;
         }
+    },
+    loginTeacher: async (_, { temail, tpassword }) => {
+        const teacher = await Teacher.findOne({ temail });
+
+        if (!teacher) {
+            throw new Error('Teacher not exist');
+        }
+        if (!teacher._authenticate(tpassword)) {
+            throw new Error('Teacher password not match');
+        };
+
+        return teacher;
     }
 }

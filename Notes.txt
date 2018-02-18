@@ -1,3 +1,8 @@
+Links: [
+        GraphqlQl app: https://github.com/skevy/graphiql-app
+        Robo 3T: https://robomongo.org
+        ]
+
 pendientes en schema
 
 
@@ -165,29 +170,37 @@ pendientes en schema
         }
 
         mutation {
-                updateStudent(_id: "5a7fce53463de93f90f06143", sfirstname: "Eric", slastname: "Torres", savatar: "", sgender: "male", sphone: "1234567890", scellphone: "1234567890", semail: "eris@hotmail.com", scountrybirth: "México", sstate: "Durango", scity: "Durango", sstreet: "Calle", szip: 35111, sgeolocation: "24.214214,-107.321321", slasthighschool: "COBAED", scurp: "qwertyuiopasdfghjk", srfc: "qwertyuiopasd", simss: "STUDENTIMSS", semailverified: "verified", sactiveaccount: "active") {
-                        _id
-                        sfirstname
-                        slastname
-                        savatar
-                        sgender
-                        sphone
-                        scellphone
-                        semail
-                        scountrybirth
-                        sstate
-                        scity
-                        sstreet
-                        szip
-                        sgeolocation
-                        slasthighschool
-                        scurp
-                        srfc
-                        simss
-                        semailverified
-                        sactiveaccount
+                createStudent(sfirstname: "Jarno", slastname: "Leppala", savatar: "jarno.jpg", sgender: "male", sphone: "6181092045", scellphone: "6181092045", semail: "jarno@hotmail.com", spassword: "passwordjarno", scountrybirth: "Findandia", sstate: "Swchez", scity: "Bayacora", sstreet: "Calle Doriloca", szip: 34111, sgeolocation: "23.214214,-102.321321", sbirthdate: "21/04/1992", slasthighschool: "CEBETIS 130", senrollment: "qwerthjklñ", scurrentoccupation: "student-worker", sranking: 10, sresume: "JarnoRESUME", sdateadmission: "Sat Mar 04 2017 02:56:14 GMT-0600 (Hora estándar central (México))", sdateegress:"ño sé" scurp: "jarnoqwertyuiopasd", srfc: "jarnoasdfgqwe", simss: "JarnoIMSS", semailverified: "verified", sactiveaccount: "active") {
+                sfirstname
+                slastname
+                savatar
+                sgender
+                sphone
+                scellphone
+                semail
+                spassword
+                scountrybirth
+                sstate
+                scity
+                sstreet
+                szip
+                sgeolocation
+                sbirthdate
+                slasthighschool
+                senrollment
+                scurrentoccupation
+                sranking
+                sresume
+                sdateadmission
+                sdateegress
+                scurp
+                srfc
+                simss
+                semailverified
+                sactiveaccount
                 }
         }
+
 
 
 //* Teachers 

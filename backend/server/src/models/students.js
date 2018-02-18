@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { hashSync, compareSync } from 'bcrypt-nodejs';
 
 const StudentSchema = new Schema({
     sfirstname: {
@@ -29,46 +30,45 @@ const StudentSchema = new Schema({
     },
     scellphone: {
         type: String,
-        unique: true,
+        // unique: true, //! pendiente descomentar
         minlength: [9, 'Student cellphone must to be longer that 9 characters'],
         maxlength: [13, 'Student is very longer']
     },
     semail: {
         type: String,
         required: 'Student email is required',
-        unique: true,
+        // unique: true, //! pendiente descomentar
         maxlength: [100, 'Student email is very longer'],
         match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Student email is incorrect type of email']
     },
-    // saddress: {
-    //     type: String,
-    //     required: 'Student address is required',
-    //     minlength: [20, 'Student address must be longer that 20 characters'],
-    //     maxlength: [250, 'Student address is very longer']
-    // },
+    spassword: {
+        type:String,
+        required:'Student password is required',
+        minlength:[3, 'Student password must be longer that 3 characters'],
+    },
     scountrybirth: {
         type: String,
         required: 'Student countrybirth is required',
         minlength: [3, 'Student countrybirth must to be longer that 3 characters'],
-        maxlength: [45, 'Student countrybirth is very longer']
+        maxlength: [50, 'Student countrybirth is very longer']
     },
     sstate: {
         type: String,
         required: 'Student state is required',
         minlength: [3, 'Student state must to be longer that 3 characters'],
-        maxlength: [25, 'Student state too long']
+        maxlength: [50, 'Student state too long']
     },
     scity: {
         type: String,
         required: 'Student city is required',
         minlength: [3, 'Student city must to be longer that 3 characters'],
-        maxlength: [25, 'Student city too long']
+        maxlength: [50, 'Student city too long']
     },
     sstreet: {
         type: String,
         required: 'Student street is required',
         minlength: [3, 'Student street must to be longer that 3 characters'],
-        maxlength: [25, 'Student street too long']
+        maxlength: [50, 'Student street too long']
     },
     szip: {
         type: Number,
@@ -120,21 +120,21 @@ const StudentSchema = new Schema({
     scurp: {
         type: String,
         required: 'Student curp is required',
-        unique: true,
+        // unique: true, //! pendiente descomentar
         minlength: [18, 'Student curp must to be 18 characters'],
         maxlength: [18, 'Student curp is very longer']
     },
     srfc: {
         type: String,
         required: 'Student rfc is required',
-        unique: true,
+        // unique: true, //! pendiente descomentar
         minlength: [13, 'Student rfc must be longer that 13 characters'],
         maxlength: [13, 'Student rfc is very longer']
     },
     simss: {//! Pendiente longitud
         type: String,
         required: 'Student imss is required',
-        unique: true,
+        // unique: true, //! pendiente descomentar
         minlength: [5, 'Student imss must be longer that 5 characters'],
         maxlength: [45, 'Student imss is very longer']
     },
@@ -149,5 +149,22 @@ const StudentSchema = new Schema({
         enum: ['active', 'disabled']
     }
 }, { timestamps: true });
+
+StudentSchema.pre('save', function(next) {
+    if (this.isModified('spassword')) {
+        this.spassword = this._hashPassword(this.spassword);
+        return next();
+    }
+    return next();
+});
+
+StudentSchema.methods = {
+    _hashPassword(spassword) {
+        return hashSync(spassword);
+    },
+    _authenticate(spassword) {
+        return compareSync(spassword, this.spassword);
+    }
+};
 
 export default mongoose.model('Student', StudentSchema);

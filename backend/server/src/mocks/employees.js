@@ -1,7 +1,7 @@
 import faker from 'faker';
 import Employee from '../models/employees';
 
-const EMPLOYEE_TOTAL = 1;
+const EMPLOYEE_TOTAL = 10;
 
 export default async () => {
     try {
@@ -14,7 +14,9 @@ export default async () => {
                                 egender: 'male',
                                 ephone: faker.phone.phoneNumberFormat(),
                                 ecellphone: faker.phone.phoneNumberFormat(),
+                                ejobtitle: 'administrative',
                                 eemail: faker.internet.email(),
+                                epassword: 'employeepassword',
                                 ecountrybirth: faker.address.country(),
                                 estate: faker.address.state(),
                                 ecity: faker.address.city(),

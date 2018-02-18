@@ -14,5 +14,16 @@ export default {
         } catch (error) {
             throw error;
         }
-    } 
+    },
+    loginEmployee: async (_, { eemail, epassword }) => {
+        const employee = await Employee.findOne({ eemail });
+
+        if (!employee) {
+            throw new Error('Employee not exist');
+        }
+        if (!employee._authenticate(epassword)) {
+            throw new Error('Employee password not match');
+        }
+        return employee;
+    }
 }
