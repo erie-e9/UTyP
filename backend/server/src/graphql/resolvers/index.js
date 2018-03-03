@@ -2,7 +2,7 @@ import GraphQLDate from 'graphql-date';
 import CampusResolvers from './campus-resolvers';
 import CarrersResolvers from './carrers-resolvers';
 import EmployeesResolvers from './employees-resolvers';
-// import EventsResolvers from './events-resolvers';
+import EventsResolvers from './events-resolvers';
 // import ServicesResolvers from './services-resolvers';
 import PostsResolvers from './posts-resolvers';
 import StudentsResolvers from './students-resolvers';
@@ -21,6 +21,9 @@ export default {
 
         getEmployee: EmployeesResolvers.getEmployee,
         getEmployees: EmployeesResolvers.getEmployees,
+
+        getEvent: EventsResolvers.getEvent,
+        getEvents: EventsResolvers.getEvents,
 
         getPost: PostsResolvers.getPost,
         getPosts: PostsResolvers.getPosts,
@@ -44,6 +47,10 @@ export default {
         updateEmployee: EmployeesResolvers.updateEmployee,
         deleteEmployee: EmployeesResolvers.deleteEmployee,
         loginEmployee: EmployeesResolvers.loginEmployee,
+
+        createEvent: EventsResolvers.createEvent,
+        updateEvent: EventsResolvers.updateEvent,
+        deleteEvent: EventsResolvers.deleteEvent,
 
         createPost: PostsResolvers.createPost,
         updatePost: PostsResolvers.updatePost,

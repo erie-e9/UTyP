@@ -1,15 +1,15 @@
 import faker from 'faker';
 import Post from '../models/posts';
 
-const STATE_TOTAL = 10;
+const POST_TOTAL = 10;
 
 export default async () => {
     try {
         await Post.remove();
-        await Array.from({ length: STATE_TOTAL}).forEach(
+        await Array.from({ length: POST_TOTAL }).forEach(
             async () => await Post.create({ 
-                                pttext: faker.lorem.paragraphs(1),
-                                ptimage: faker.internet.avatar()
+                                ptext: faker.lorem.paragraphs(1),
+                                pimage: faker.internet.avatar()
             })
         )
     } catch (error) {

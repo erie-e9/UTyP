@@ -70,6 +70,16 @@ export default `
 
     type Event {
         _id: ID!
+        evname: String!
+        evdescription: String
+        evkeywords: String!
+        evubication: String!
+        evgeolocation: String!
+        evdatestart: String!
+        evdatefinish: String
+        evtype: String!
+        evimage: String!
+        evvideo: String!
         createdAt: Date!
         updatedAt: Date!
     }
@@ -82,8 +92,8 @@ export default `
 
     type Post {
         _id: ID!
-        pttext: String
-        ptimage: String
+        ptext: String
+        pimage: String
         createdAt: Date!
         updatedAt: Date!
     }
@@ -196,41 +206,40 @@ export default `
     }
 
     type Mutation {
-        createCampus(
-                    camname: String!,
-                    camlogo: String!,
-                    camphone: String!,
-                    camcellphone: String,
-                    camemail: String!,
-                    camcode: String!,
-                    camstate: String!,
-                    camcity: String!,
-                    camstreet: String!,
-                    camzip: Int!,
-                    camgeolocation: String!): Campus
+        createCampus(camname: String!,
+                        camlogo: String!,
+                        camphone: String!,
+                        camcellphone: String,
+                        camemail: String!,
+                        camcode: String!,
+                        camstate: String!,
+                        camcity: String!,
+                        camstreet: String!,
+                        camzip: Int!,
+                        camgeolocation: String!): Campus
         updateCampus(_id: ID!,
-                    camname: String!,
-                    camlogo: String!,
-                    camphone: String!,
-                    camcellphone: String,
-                    camemail: String!,
-                    camcode: String!,
-                    camstate: String!,
-                    camcity: String!,
-                    camstreet: String!,
-                    camzip: Int!,
-                    camgeolocation: String!): Campus
+                        camname: String!,
+                        camlogo: String!,
+                        camphone: String!,
+                        camcellphone: String,
+                        camemail: String!,
+                        camcode: String!,
+                        camstate: String!,
+                        camcity: String!,
+                        camstreet: String!,
+                        camzip: Int!,
+                        camgeolocation: String!): Campus
         deleteCampus(_id: ID!): Status
 
         createCarrer(caname: String!,
-                    calogo: String!,
-                    casubjets: String!,
-                    cacode: String!): Carrer
+                        calogo: String!,
+                        casubjets: String!,
+                        cacode: String!): Carrer
         updateCarrer(_id: ID!,
-                    caname: String!,
-                    calogo: String!,
-                    casubjets: String!,
-                    cacode: String!): Carrer
+                        caname: String!,
+                        calogo: String!,
+                        casubjets: String!,
+                        cacode: String!): Carrer
         deleteCarrer(_id: ID!): Status
 
         createClassroom(cbuilding: String!,
@@ -288,11 +297,34 @@ export default `
         deleteEmployee(_id: ID!): Status
         loginEmployee(eemail: String!, epassword: String!): Employee
 
-        createPost(pttext: String, 
-                    ptimage: String): Post
+        createEvent(evname: String!,
+                        evdescription: String,
+                        evkeywords: String!,
+                        evubication: String!,
+                        evgeolocation: String!,
+                        evdatestart: String!,
+                        evdatefinish: String,
+                        evtype: String!,
+                        evimage: String!,
+                        evvideo: String!): Event
+        updateEvent(_id: ID!,
+                        evname: String!,
+                        evdescription: String,
+                        evkeywords: String!,
+                        evubication: String!,
+                        evgeolocation: String!,
+                        evdatestart: String!,
+                        evdatefinish: String,
+                        evtype: String!,
+                        evimage: String!,
+                        evvideo: String!): Event
+        deleteEvent(_id: ID!): Status
+
+        createPost(ptext: String, 
+                    pimage: String): Post
         updatePost(_id: ID!,
-                    pttext: String, 
-                    ptimage: String): Post
+                    ptext: String, 
+                    pimage: String): Post
         deletePost(_id: ID!): Status
 
         createStudent(sfirstname: String!,
