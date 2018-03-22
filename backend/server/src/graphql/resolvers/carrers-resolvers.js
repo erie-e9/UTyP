@@ -1,12 +1,42 @@
 import Carrer from '../../models/carrers';
+import { requireAuth } from '../../services/auth';
 
 export default {
-    getCarrer: (_, { _id }) => Carrer.findById(_id),
-    getCarrers: () => Carrer.find({}).sort({ createdAt: -1 }),
-    createCarrer: (_, args) => Carrer.create(args),
-    updateCarrer: (_, { _id, ...rest}) => Carrer.findByIdAndUpdate(_id, rest, {new: true}),
-    deleteCarrer: async (_, { _id }) => {
+    getCarrer: async (_, { _id }, { user }) => {
         try {
+            await requireAuth(user);
+            return Carrer.findById(_id);
+        } catch (error) {
+            throw error;
+        }
+    },
+    getCarrers: async (_, args, { user }) => {
+        try {
+            await requireAuth(user);
+            return Carrer.find({}).sort({ createdAt: -1 });
+        } catch (error) {
+            throw error;
+        }
+    },
+    createCarrer: async (_, args, { user }) => {
+        try {
+            await requireAuth(user);
+            return Carrer.create(args);
+        } catch (error) {
+            throw error;
+        }
+    },
+    updateCarrer: async (_, { _id, ...rest}, { user }) => {
+        try {
+            await requireAuth(user);
+            return Carrer.findByIdAndUpdate(_id, rest, {new: true});
+        } catch (error) {
+            throw error;
+        }
+    },
+    deleteCarrer: async (_, { _id }, { user }) => {
+        try {
+            await requireAuth(user);
             await Carrer.findByIdAndRemove(_id);
             return {
                 message: 'Carrer deleted success!'

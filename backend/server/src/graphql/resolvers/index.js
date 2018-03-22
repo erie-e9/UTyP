@@ -1,6 +1,7 @@
 import GraphQLDate from 'graphql-date';
 import CampusResolvers from './campus-resolvers';
 import CarrersResolvers from './carrers-resolvers';
+import ClassroomsResolvers from './classrooms-resolvers';
 import EmployeesResolvers from './employees-resolvers';
 import EventsResolvers from './events-resolvers';
 // import ServicesResolvers from './services-resolvers';
@@ -19,6 +20,9 @@ export default {
         getCarrer: CarrersResolvers.getCarrer,
         getCarrers: CarrersResolvers.getCarrers,
 
+        getClassrooms: ClassroomsResolvers.getClassroom,
+        getClassrooms: ClassroomsResolvers.getClassrooms,
+
         getEmployee: EmployeesResolvers.getEmployee,
         getEmployees: EmployeesResolvers.getEmployees,
 
@@ -32,7 +36,9 @@ export default {
         getStudents: StudentsResolvers.getStudents,
 
         getTeacher: TeachersResolvers.getTeacher,
-        getTeachers: TeachersResolvers.getTeachers
+        getTeachers: TeachersResolvers.getTeachers,
+
+        me: StudentsResolvers.me
     },
     Mutation: {
         createCampus: CampusResolvers.createCampus,

@@ -5,6 +5,10 @@ export default `
         message: String!
     }
 
+    type Auth {
+        token: String!
+    }
+
     type Campus {
         _id: ID!
         camname: String!
@@ -131,6 +135,39 @@ export default `
         updatedAt: Date!
     }
 
+    type Me {
+        _id: ID!
+        sfirstname: String!
+        slastname: String
+        savatar: String!
+        sgender: String!
+        sphone: String!
+        scellphone: String
+        semail: String!
+        spassword: String!
+        scountrybirth: String!
+        sstate: String!
+        scity: String!
+        sstreet: String!
+        szip: Int!
+        sgeolocation: String!
+        sbirthdate: String!
+        slasthighschool: String!
+        senrollment: String!
+        scurrentoccupation: String!
+        sranking: Int!
+        sresume: String
+        sdateadmission: String!
+        sdateegress: String
+        scurp: String!
+        srfc: String!
+        simss: String!
+        semailverified: String!
+        sactiveaccount: String!
+        createdAt: Date!
+        updatedAt: Date!
+    }
+
     type Subject {
         _id: ID!
         createdAt: Date!
@@ -203,6 +240,8 @@ export default `
         
         getTeacher(_id: ID!): Teacher
         getTeachers: [ Teacher ]
+
+        me: Me
     }
 
     type Mutation {
@@ -353,7 +392,7 @@ export default `
                         srfc: String!,
                         simss: String!,
                         semailverified: String!,
-                        sactiveaccount: String!): Student
+                        sactiveaccount: String!): Auth
         updateStudent(_id: ID!,
                         sfirstname: String!
                         slastname: String,
@@ -383,7 +422,7 @@ export default `
                         semailverified: String!,
                         sactiveaccount: String!): Student
         deleteStudent(_id: ID!): Status
-        loginStudent( semail: String!, spassword: String!): Student
+        loginStudent( semail: String!, spassword: String!): Auth
         
         createTeacher(tfirstname: String!,
                         tlastname: String,

@@ -1,12 +1,44 @@
 import Student from '../../models/students';
+import { requireAuth } from '../../services/auth';
 
 export default {
-    getStudent: (_, { _id }) => Student.findById(_id),
-    getStudents: () => Student.find({}).sort({ createdAt: -1}),
-    createStudent: (_, args) => Student.create(args), //* signup student
-    updateStudent: (_, { _id, ...rest }) => Student.findByIdAndUpdate(_id, rest, {new:true}),
-    deleteStudent: async (_, { _id }) => {
+    getStudent: async (_, { _id }, { user }) => {
         try {
+            await requireAuth(user);
+            return Student.findById(_id);
+        } catch (error) {
+            throw error;
+        }
+    },
+    getStudents: async (_, args, { user }) => {
+        try {
+            await requireAuth(user);
+            return Student.find({}).sort({ createdAt: -1 });
+        } catch (error) {
+            throw error;
+        }
+    },
+    createStudent: async (_, args) => { //* signup student
+        try {
+            let student = await Student.create(args);
+            return {
+                token: student._createToken()
+            }
+        } catch (error) {
+            throw error;
+        }
+    },
+    updateStudent: async (_, { _id, ...rest }, { user }) => {
+        try {
+            await requireAuth(user);
+            return Student.findByIdAndUpdate(_id, rest, {new:true})
+        } catch (error) {
+            throw error;
+        }
+    },
+    deleteStudent: async (_, { _id }, { user }) => {
+        try {
+            await requireAuth(user);
             await Student.findByIdAndRemove(_id);
             return {
                 message: 'Student deleted success!'
@@ -26,5 +58,13 @@ export default {
         }
 
         return student;
+    },
+    me: async (_, args, { user }) => {
+        try {
+            const me = await requireAuth(user);
+            return me;
+        } catch (error) {
+            throw error;
+        }
     }
 }

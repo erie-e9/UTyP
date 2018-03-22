@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-const CarrerSchema = new Schema({
+const ClassroomSchema = new Schema({
     cbuilding: {
         type: String,
         required: 'Classroom building is required',
@@ -17,4 +17,4 @@ const CarrerSchema = new Schema({
     }
 }, { timestamps: true });
 
-export default mongoose.model('Carrer', CarrerSchema);
+export default mongoose.model('Classroom', ClassroomSchema);

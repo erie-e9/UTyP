@@ -1,7 +1,7 @@
 import faker from 'faker';
 import Campus from '../models/campus';
 
-const CAMPUS_TOTAL = 1;
+const CAMPUS_TOTAL = 10;
 
 export default async () => {
     try {
