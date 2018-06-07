@@ -1,76 +1,92 @@
 import mongoose, { Schema } from 'mongoose';
+const validators = require('mongoose-validators');
 
 const CampusSchema = new Schema({
     camname: {
         type: String,
         required: 'Campus name is required',
         unique: true,
-        minlength: [3, 'Campus name must to be longer that 3 characters'],
-        maxlength: [50, 'Campus name is very longer']
+        minlength: [3, 'Campus name must be longer that 3 characters'],
+        maxlength: [50, 'Campus name is very longer'],
+        validate: [validators.isLength(3, 50)]
     },
-    camlogo: {
+    camabbreviation: {
         type: String,
-        required: 'Campus logo is required'
-    },
-    // camaddress: {
-    //     type: String,
-    //     required: 'Campus address is required',
-    //     minlength: [20, 'Campus address must to be longer that characters'],
-    //     maxlength: [250, 'Campus address is very longer']
-    // },
-    camphone: {
-        type: String,
+        required: 'Campus abbreviation is required',
         unique: true,
-        required: 'Campus phone is required',
-        minlength: [9, 'Campus phone must to be longer that 9 characters'],
-        maxlength: [13, 'Campus phone is very longer']
-    },
-    camcellphone: {
-        type: String,
-        unique: true,
-        minlength: [9, 'Campus cellphone must to be longer that 9 characters'],
-        maxlength: [13, 'Campus cellphone is very longer']
-    },
-    camemail: {
-        type: String,
-        required: 'Campus email is required',
-        unique: true,
-        maxlength: [100, 'Campus email is very longer'],
-        match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Campus email is incorrect type of email']
+        minlength: [2, 'Campus abbreviation must be longer that 2 characters'],
+        maxlength: [10, 'Campus abbreviation is very longer'],
+        validate: [validators.isLength(2, 10)]
     },
     camcode: {
         type: String,
         required: 'Campus code is required',
         unique: true,
-        minlength: [3, 'Campus code must to be longer that 3 characters']
+        minlength: [3, 'Campus code must be longer that 3 characters'],
+        maxlength: [50, 'Campus code is very longer'],
+        validate: [validators.isLength(3, 50)]
     },
-    camstate: {
+    camslogan: {
         type: String,
-        required: 'Campus state is required',
-        minlength: [3, 'Campus state must to be longer that 3 characters'],
-        maxlength: [25, 'Campus state too long']
+        required: 'Campus slogan is required',
+        minlength: [3, 'Campus slogan must be longer that 3 characters'],
+        maxlength: [100, 'Campus slogan is very longer'],
+        validate: [validators.isLength(3, 100)]
     },
-    camcity: {
+    cammascot: {
         type: String,
-        required: 'Campus city is required',
-        minlength: [3, 'Campus city must to be longer that 3 characters'],
-        maxlength: [25, 'Campus city too long']
+        required: 'Campus mascot is required',
+        minlength: [3, 'Campus mascot must be longer that 3 characters'],
+        maxlength: [250, 'Campus mascot is very longer'],
+        validate: [validators.isLength(3, 250)]
     },
-    camstreet: {
+    camlogo: {
         type: String,
-        required: 'Campus street is required',
-        minlength: [3, 'Campus street must to be longer that 3 characters'],
-        maxlength: [25, 'Campus street too long']
+        required: 'Campus logo is required',
+        minlength: [3, 'Campus logo must be longer that 3 characters'],
+        maxlength: [250, 'Campus logo is very longer'],
+        validate: [validators.isLength(3, 250)]
     },
-    camzip: {
-        type: Number,
-        required: 'Campus zip is required',
-        min: [5, 'Campus zip must to be 5 characters']
-    },
-    camgeolocation: {
+    camemail: {
         type: String,
-        required: 'Campus geolocation is required',
+        required: 'Campus email is required',
+        unique: true,
+        minlength: [3, 'Campus email must be longer that 3 characters'],
+        maxlength: [100, 'Campus email is very longer'],
+        validate: [validators.isLength(3, 100), validators.isEmail('Campus email is incorrect type of email')]
+        // match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Campus email is incorrect type of email']
     },
+    camwebpage: {
+        type: String,
+        required: 'Campus webpage is required',
+        minlength: [3, 'Campus webpage must be longer that 3 characters'],
+        maxlength: [100, 'Campus webpage is very longer'],
+        validate: [validators.isLength(3, 100), validators.isURL()]
+    },
+    camdatestart: {
+        type: Date,
+        required: 'Campus date start is required',
+        validate: [validators.isDate()]
+    },
+    camisenabled: {
+        type: Boolean,
+        required: 'Campus isenabled is required',
+        default: false
+    },
+    camregisteredbyuser: {
+        type: String,
+        required: 'Campus registeredbyuser is required'
+    },
+    camupdatedbyuser: {
+        type: String
+    },
+    camdeletedbyuser: {
+        type: String
+    },
+    camdatedeleted: {
+        type: Date,
+        validate: [validators.isDate()]
+    }
 }, { timestamps: true });
 
 export default mongoose.model('Campus', CampusSchema);

@@ -2,7 +2,7 @@
 import express from 'express';
 import { createServer } from 'http';
 import constants from './config/constants';
-import mocks from './mocks/campus';
+import mocks from './mocks/index';
 import './config/db';
 import middlewares from './config/middlewares';
 

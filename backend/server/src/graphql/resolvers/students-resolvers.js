@@ -18,12 +18,18 @@ export default {
             throw error;
         }
     },
-    createStudent: async (_, args) => { //* signup student
+    getUserStudents: async (_, args, { user }) => {
         try {
-            let student = await Student.create(args);
-            return {
-                token: student._createToken()
-            }
+            await requireAuth(user);
+            return Student.find({ user: user._id }).sort({ createdAt: -1 });
+        } catch (error) {
+            throw error;
+        }
+    },
+    createStudent: async (_, args, { user }) => {
+        try {
+            await requireAuth(user);
+            return Student.create(args);
         } catch (error) {
             throw error;
         }
@@ -43,26 +49,6 @@ export default {
             return {
                 message: 'Student deleted success!'
             }
-        } catch (error) {
-            throw error;
-        }
-    },
-    loginStudent: async (_, { semail, spassword }) => {
-        const student = await Student.findOne({ semail });
-
-        if(!student) {
-            throw new Error('Student not exist');
-        }
-        if (!student._authenticate(spassword)) {
-            throw new Error('Student password not match');
-        }
-
-        return student;
-    },
-    me: async (_, args, { user }) => {
-        try {
-            const me = await requireAuth(user);
-            return me;
         } catch (error) {
             throw error;
         }

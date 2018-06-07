@@ -18,6 +18,14 @@ export default {
             throw error;
         }
     },
+    getUserEmployees: async (_, args, { user }) => {
+        try {
+            await requireAuth(user);
+            return Employee.find({ user: user._id }).sort({ createdAt: -1 });
+        } catch (error) {
+            throw error;
+        }
+    },
     createEmployee: async (_, args, { user }) => {
         try {
             await requireAuth(user);
@@ -44,16 +52,5 @@ export default {
         } catch (error) {
             throw error;
         }
-    },
-    loginEmployee: async (_, { eemail, epassword }) => {
-        const employee = await Employee.findOne({ eemail });
-
-        if (!employee) {
-            throw new Error('Employee not exist');
-        }
-        if (!employee._authenticate(epassword)) {
-            throw new Error('Employee password not match');
-        }
-        return employee;
     }
 }

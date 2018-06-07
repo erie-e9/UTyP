@@ -2683,6 +2683,12 @@ mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
+mongoose-validators@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/mongoose-validators/-/mongoose-validators-0.1.0.tgz#7e5c829e5d55ffb81ef196a9dd793bd5104ff74c"
+  dependencies:
+    validator "3.16.0"
+
 mongoose@^5.0.11:
   version "5.0.11"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.0.11.tgz#bb31a98591cd2377312ded28155281110a9e1da0"
@@ -3730,6 +3736,10 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
+
+validator@3.16.0:
+  version "3.16.0"
+  resolved "https://registry.yarnpkg.com/validator/-/validator-3.16.0.tgz#ec2c6c3a8be5f7e7085cb79e1b1681fc5bd27846"
 
 validator@^9.4.1:
   version "9.4.1"

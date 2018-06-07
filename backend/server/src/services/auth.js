@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
 import constanst from '../config/constants';
-import Student from '../models/students';
+import User from '../models//users';
 
-export async function requireAuth(student) {
-    if (!student || !student._id) {
+export async function requireAuth(user) {
+    if (!user || !user._id) {
         throw new Error('Unauthorized');
     }
-    const me = Student.findById(student._id);
+    const me = User.findById(user._id);
     if (!me) {
         throw new Error('Unauthorized');
     }

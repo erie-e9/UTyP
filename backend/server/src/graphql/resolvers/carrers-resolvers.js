@@ -26,7 +26,7 @@ export default {
             throw error;
         }
     },
-    updateCarrer: async (_, { _id, ...rest}, { user }) => {
+    updateCarrer: async (_, { _id, ...rest }, { user }) => {
         try {
             await requireAuth(user);
             return Carrer.findByIdAndUpdate(_id, rest, {new: true});

@@ -1,179 +1,120 @@
 import mongoose, { Schema } from 'mongoose';
-import { hashSync, compareSync } from 'bcrypt-nodejs';
-import jwt from 'jsonwebtoken';
-import constants from '../config/constants';
+const validators = require('mongoose-validators');
 
 const StudentSchema = new Schema({
-    sfirstname: {
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    id_carrer: {
         type: String,
-        required: 'Student firstname is required',
-        minlength: [3, 'Student firstname must be longer that 3 characters'],
-        maxlength: [50, 'Student firstname is very longer']
+        required: 'Student id_carrer is required',
     },
-    slastname: {
+    id_studenttype: {
         type: String,
-        minlength: [3, 'Student lastname must be longer that 3 characters'],
-        maxlength: [50, 'Student lastname is very longer']
+        required: 'Student id_studenttype is required',
     },
-    savatar: {
+    id_group: {
         type: String,
-        required: 'Student avatar is required',
+        required: 'Student id_group is required',
     },
-    sgender: {
+    susername: {
         type: String,
-        required: 'Student gender is required',
-        enum: ['male', 'female']
+        required: 'Student name is required',
+        unique: true,
+        minlength: [3, 'Student name must be longer that 3 characters'],
+        maxlength: [100, 'Student name is very longer'],
+        validate: [validators.isLength(3, 100)]
     },
-    sphone: {
-        type: String,
-        required: 'Student phone is required',
-        minlength: [9, 'Student phone must to be longer that 9 characters'],
-        maxlength: [13, 'Student phone is very longer']
-    },
-    scellphone: {
-        type: String,
-        // unique: true, //! pendiente descomentar
-        minlength: [9, 'Student cellphone must to be longer that 9 characters'],
-        maxlength: [13, 'Student is very longer']
-    },
-    semail: {
-        type: String,
-        required: 'Student email is required',
-        // unique: true, //! pendiente descomentar
-        maxlength: [100, 'Student email is very longer'],
-        match:[/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Student email is incorrect type of email']
-    },
-    spassword: {
-        type:String,
-        required:'Student password is required',
-        minlength:[3, 'Student password must be longer that 3 characters'],
-    },
-    scountrybirth: {
-        type: String,
-        required: 'Student countrybirth is required',
-        minlength: [3, 'Student countrybirth must to be longer that 3 characters'],
-        maxlength: [50, 'Student countrybirth is very longer']
-    },
-    sstate: {
-        type: String,
-        required: 'Student state is required',
-        minlength: [3, 'Student state must to be longer that 3 characters'],
-        maxlength: [50, 'Student state too long']
-    },
-    scity: {
-        type: String,
-        required: 'Student city is required',
-        minlength: [3, 'Student city must to be longer that 3 characters'],
-        maxlength: [50, 'Student city too long']
-    },
-    sstreet: {
-        type: String,
-        required: 'Student street is required',
-        minlength: [3, 'Student street must to be longer that 3 characters'],
-        maxlength: [50, 'Student street too long']
-    },
-    szip: {
-        type: Number,
-        required: 'Student zip is required',
-        min: [5, 'Student zip must to be 5 characters']
-    },
-    sgeolocation: {
-        type: String,
-        required: 'Student geolocation is required',
-    },
-    sbirthdate: {
-        type: String,
-        required: 'Student birthdate is required',
-    },
-    slasthighschool: {
-        type: String,
-        required: 'Student last highschool is required',
-        maxlength: [45, 'Student last highschool is very longer']
-    },
+    // semail: {
+    //     type: String,
+    //     required: 'Student email is required',
+    //     unique: true, //! pendiente descomentar
+    //     minlength: [3, 'Student email must to be 3 characters'],
+    //     maxlength: [100, 'Student email is very longer'],
+    //     validate: [validators.isLength(3, 100), validators.isEmail()]
+    //     // match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,'Student email is incorrect type of email']
+    // },
     senrollment: {
         type: String,
         required: 'Student enrollment is required',
-        // unique: true, //! pendiente descomentar
-        minlength: [10, 'Student enrollment must to be 10 characters'],
-        maxlength: [10, 'Student enrollment is very longer']
+        minlength: [5, 'Student enrollment must to be 5 characters'],
+        maxlength: [100, 'Student enrollment is very longer'],
+        validate: [validators.isLength(5, 100)]
     },
+    sprofessionallicense: {
+        type: String,
+        required: 'Student professional license is required',
+        // unique: true,
+        minlength: [5, 'Student professional license must to be 5 characters'],
+        maxlength: [50, 'Student professional license is very longer'],
+        validate: [validators.isLength(5, 50)]
+    },
+    shighschoolname: {
+        type: String,
+        required: 'Student highschool name is required',
+        minlength: [5, 'Student highschool name must to be 5 characters'],
+        maxlength: [150, 'Student highschool name is very longer'],
+        validate: [validators.isLength(5, 150)]
+    },
+    shighschoolgrade: {
+        type: Number,
+        required: 'Student highschool grade is required',
+        min: [1, 'Student highschool grade must be longer that 1 character'],
+        max: [5, 'Student highschool grade is very longer'], //! Checar longitud
+        validate: [validators.isLength(1, 5), validators.isFloat()]
+    },
+    shighschoolcertificate: {
+        type: String,
+        required: 'Student highschool certificate is required',
+        minlength: [10, 'Student highschool certificate must be longer that 10 characters'],
+        maxlength: [250, 'Student highschool certificate is very longer'],
+        validate: [validators.isLength(10, 250)]
+    },
+    // semailverified: {
+    //     type: Boolean,
+    //     required: 'Student email verified is required', 
+    // },
     scurrentoccupation: {
         type: String,
-        required: 'Student occupation is required',
+        required: 'Student current occupation is required',
         enum: ['student', 'worker', 'student-worker', 'graduated']
+    },
+    smedicalinsurance: { //! pendiente saber length
+        type: String,
+        required: 'Student medical insurance is required',
+        minlength: [5, 'Student medical insurance must to be 5 characters'],
+        maxlength: [50, 'Student medical insurance is very longer'],
+        validate: [validators.isLength(5, 50)]
+    },
+    sresume: { //! pendiente si va a ser archivo o datos
+        type: String,
+        required: 'Student resume is required',
+        minlength: [10, 'Student resume must to be 10 characters'],
+        maxlength: [250, 'Student resume is very longer'],
+        validate: [validators.isLength(10, 250)]
     },
     sranking: {
         type: Number, //! pediente el tipo de estrellitas
         required: 'Student ranking is required',
         min: [1, 'Student only can be evaluated 1 to 10'],
-        max: [10, 'Student only can be evaluated 1 to 10']
+        max: [10, 'Student only can be evaluated 1 to 10'],
+        validate: [validators.isLength(1, 10), validators.isFloat()]
     },
-    sresume: { //! pendiente si va a ser archivo o datos
+    sregisteredbyuser: {
         type: String,
-        // unique: true, //! pendiente descomentar
+        required: 'Student registeredbyuser is required'
     },
-    sdateadmission: {
-        type: String,
-        required: 'Student date admission is required',
-    },
-    sdateegress: {
+    supdatedbyuser: {
         type: String,
     },
-    scurp: {
+    sdeletedbyuser: {
         type: String,
-        required: 'Student curp is required',
-        // unique: true, //! pendiente descomentar
-        minlength: [18, 'Student curp must to be 18 characters'],
-        maxlength: [18, 'Student curp is very longer']
     },
-    srfc: {
-        type: String,
-        required: 'Student rfc is required',
-        // unique: true, //! pendiente descomentar
-        minlength: [13, 'Student rfc must be longer that 13 characters'],
-        maxlength: [13, 'Student rfc is very longer']
+    sdatedeleted: {
+        type: Date,
+        validate: [validators.isDate()]
     },
-    simss: {//! Pendiente longitud
-        type: String,
-        required: 'Student imss is required',
-        // unique: true, //! pendiente descomentar
-        minlength: [5, 'Student imss must be longer that 5 characters'],
-        maxlength: [45, 'Student imss is very longer']
-    },
-    semailverified: {
-        type: String,
-        required: 'Student emailverified is required',
-        enum: ['verified', 'waiting']
-    },
-    sactiveaccount: {
-        type: String,
-        required: 'Student active account is required',
-        enum: ['active', 'disabled']
-    }
 }, { timestamps: true });
-
-StudentSchema.pre('save', function(next) {
-    if (this.isModified('spassword')) {
-        this.spassword = this._hashPassword(this.spassword);
-        return next();
-    }
-    return next();
-});
-
-StudentSchema.methods = {
-    _hashPassword(spassword) {
-        return hashSync(spassword);
-    },
-    _authenticate(spassword) {
-        return compareSync(spassword, this.spassword);
-    },
-    _createToken() {
-        return jwt.sign({
-            _id: this._id
-        },
-        constants.JWT_SECRET
-        )
-    }
-};
 
 export default mongoose.model('Student', StudentSchema);

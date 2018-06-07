@@ -26,7 +26,7 @@ export default {
             throw error;
         }
     },
-    updateCampus: async (_, { _id, ...rest}, { user }) => {
+    updateCampus: async (_, { _id, ...rest }, { user }) => {
         try {
             await requireAuth(user);
             return Campus.findByIdAndUpdate(_id, rest, {new: true});

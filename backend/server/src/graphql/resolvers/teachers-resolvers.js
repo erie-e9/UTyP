@@ -18,6 +18,14 @@ export default {
             throw error;
         }
     },
+    getUserTeachers: async (_, args, { user }) => {
+        try {
+            await requireAuth(user);
+            return Teacher.find({ user: user._id }).sort({ createdAt: -1 });
+        } catch (error) {
+            throw error;
+        }
+    },
     createTeacher: async (_, args, { user }) => { //* sigup teacher
         try {
             await requireAuth(user);
