@@ -28,7 +28,7 @@
     "subscriptions-transport-ws": "^0.9.1"
   },
   "devDependencies": {
-    "eslint": "^4.9.0",
+    "eslint": "^4.18.2",
     "eslint-config-equimper": "^2.2.1",
     "eslint-config-prettier": "^2.6.0",
     "prettier": "^1.7.4",
