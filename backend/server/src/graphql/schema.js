@@ -701,7 +701,7 @@ export default `
 
     type Post {
         _id: ID!
-        id_user: User!
+        user: User!
         ptext: String
         pimage: String
         pclaps: Int!

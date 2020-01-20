@@ -2,10 +2,6 @@ import mongoose, { Schema } from 'mongoose';
 const validators = require('mongoose-validators');
 
 const EventSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
     evname: {
         type: String,
         required: 'Event name is required',
@@ -72,6 +68,10 @@ const EventSchema = new Schema({
     evdatedeleted: {
         type: Date,
         validate: [validators.isDate()]
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
 }, { timestamps: true })
 
