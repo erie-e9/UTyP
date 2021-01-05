@@ -12,7 +12,7 @@
     "@appandflow/touchable": "^1.2.2",
     "@expo/react-native-action-sheet": "^1.0.1",
     "apollo-client": "^1.9.3",
-    "axios": "^0.17.0",
+    "axios": "^0.21.1",
     "date-fns": "^1.29.0",
     "expo": "^24.0.0",
     "prop-types": "^15.6.0",
